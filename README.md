@@ -9,6 +9,7 @@ This repository contains an Arduino code to interface the BMP280 sensor using th
 - [Setup Instructions](#setup-instructions)
 - [Code Overview](#code-overview)
 - [Usage](#usage)
+- [Troubleshooting](#troubleshooting)
 
 ## Introduction
 The BMP280 is a barometric pressure sensor that can measure temperature, pressure, and estimate altitude. This project uses the ESP32 to read data from the BMP280 sensor and display it on the serial monitor.
@@ -50,3 +51,13 @@ The BMP280 is a barometric pressure sensor that can measure temperature, pressur
 ## Usage
 1. Power the ESP32 and BMP280 sensor.
 2. Open the serial monitor to view the live temperature, pressure, and altitude data.
+
+## Troubleshooting
+
+### Incorrect Altitude Measurements
+The `bmp.readAltitude()` function estimates altitude based on pressure and a reference sea-level pressure value. If the altitude values are incorrect, you may need to adjust this reference pressure value to match your local sea-level pressure.
+
+The reference pressure value is set in the following line of code:
+
+```cpp
+Serial.print(bmp.readAltitude(1001.00)); /* Adjusted to local forecast! */
